@@ -1,9 +1,24 @@
+<<<<<<< HEAD
+=======
+---
+title: LLM Analysis Quiz
+emoji: 🧠
+colorFrom: blue
+colorTo: yellow
+sdk: docker
+app_port: 7860
+license: mit
+pinned: false
+---
+
+>>>>>>> 7a51db6b8add7e31fcf399ab5854886cc01b56c5
 # LLM Analysis Quiz Solver
 
 A complete backend system for solving LLM analysis quizzes automatically. The system uses FastAPI for the server, Playwright for JS-rendered pages, and intelligent heuristics to extract, analyze, and submit quiz answers.
 
 ## Features
 
+<<<<<<< HEAD
 - ✅ **FastAPI Backend**: Async REST API with `/solve` endpoint
 - ✅ **Playwright Integration**: Handles JavaScript-rendered quiz pages
 - ✅ **Multi-format Support**: CSV, PDF, Excel, JSON, images, and text files
@@ -31,16 +46,54 @@ llm-quiz-agent/
 ├── README.md           # This file
 └── LICENSE             # MIT License
 ```
+=======
+- *FastAPI Backend* — Async REST API with /solve endpoint
+- *Playwright Integration* — Handles JavaScript-rendered quiz pages
+- *Multi-format Support* — CSV, PDF, Excel, JSON, images, text files
+- *Automatic Chain Solving* — Solves multi-step quizzes automatically
+- *Multiple Answer Strategies* — File parsing, regex, pattern matching
+- *Secure Secret Validation* — Prevents unauthorized access
+- *Logging & Error Handling* — Robust retries and debugging support
+
+## Project Structure
+
+
+Project-LLM-Analysis-Quiz/
+├── LICENSE
+├── README.md
+├── .gitignore
+├── requirements.txt
+├── Dockerfile
+├── run.py
+│
+├── app/
+│   ├── __init__.py
+│   ├── config.py      # Environment variables, settings
+│   ├── main.py        # FastAPI entry point
+│   ├── scraper.py     # Playwright automation & rendering
+│   ├── solver.py      # Answer computation logic
+│   ├── utils.py       # File parsing helpers
+│
+└── tests/
+    ├── test_main.py
+    ├── test_utils.py
+
+>>>>>>> 7a51db6b8add7e31fcf399ab5854886cc01b56c5
 
 ## Installation
 
 ### Prerequisites
 
+<<<<<<< HEAD
 - Python 3.8+
+=======
+- Python 3.10+
+>>>>>>> 7a51db6b8add7e31fcf399ab5854886cc01b56c5
 - pip
 
 ### Setup
 
+<<<<<<< HEAD
 1. **Clone or navigate to the project directory:**
    ```bash
    cd llm-quiz-agent
@@ -90,15 +143,67 @@ Solve a quiz chain.
 
 **Request Body:**
 ```json
+=======
+bash
+cd llm-quiz-agent
+python -m venv venv
+venv\Scripts\activate      # Windows
+# or: source venv/bin/activate (Mac/Linux)
+
+pip install -r requirements.txt
+playwright install
+
+
+Create environment file:
+
+bash
+cp .env.example .env
+# Edit .env and set SECRET and EMAIL
+
+
+## Usage
+
+### Run the Server
+
+bash
+python -m app.main
+
+
+or
+
+bash
+uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+
+
+Server runs at:
+
+
+http://0.0.0.0:8000
+
+
+## API Endpoints
+
+### POST /solve
+
+*Request*
+json
+>>>>>>> 7a51db6b8add7e31fcf399ab5854886cc01b56c5
 {
   "email": "your-email@example.com",
   "secret": "your-secret-key",
   "url": "https://quiz-url.com/quiz-123"
 }
+<<<<<<< HEAD
 ```
 
 **Response:**
 ```json
+=======
+
+
+*Response*
+json
+>>>>>>> 7a51db6b8add7e31fcf399ab5854886cc01b56c5
 {
   "success": true,
   "message": "All quizzes completed successfully",
@@ -118,6 +223,7 @@ Solve a quiz chain.
     "success": true
   }
 }
+<<<<<<< HEAD
 ```
 
 **Status Codes:**
@@ -268,3 +374,79 @@ MIT License - see LICENSE file for details.
 
 For issues or questions, please open an issue on the repository.
 
+=======
+
+
+### GET /health
+
+json
+{ "status": "healthy" }
+
+
+### GET /
+
+Returns API information.
+
+## How It Works
+
+1. Validates request secret and quiz URL  
+2. Loads the quiz page using Playwright (handles JS rendering)  
+3. Extracts question, data links, and submission endpoints  
+4. Downloads and analyzes data files  
+5. Computes answers using multiple logic strategies  
+6. Submits answer and follows next quiz link  
+7. Stops when chain ends or timeout is reached  
+
+## Configuration
+
+Modify .env:
+
+
+SECRET=<your-secret>
+EMAIL=<your-email>
+PORT=8000
+QUIZ_TIMEOUT=180
+MAX_RETRIES=3
+LOG_LEVEL=INFO
+
+
+## Testing
+
+bash
+pytest tests/
+pytest --cov=app tests/
+
+
+## Troubleshooting
+
+*Playwright missing browsers*
+bash
+playwright install chromium
+
+
+*Port already in use*
+bash
+netstat -ano | findstr :8000
+taskkill /PID <PID> /F
+
+
+*Import issues*
+bash
+python -m app.main
+
+
+## License
+
+MIT License — see LICENSE file for full details.
+
+## Contributing
+
+1. Fork the repository  
+2. Create a feature branch  
+3. Make changes and add tests  
+4. Open a pull request  
+
+## Support
+
+For help or issues, open a GitHub issue in this repository.
+>>>>>>> 7a51db6b8add7e31fcf399ab5854886cc01b56c5
